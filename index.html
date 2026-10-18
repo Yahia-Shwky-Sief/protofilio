@@ -20,11 +20,14 @@
       --rule: #000000;
       --soft: #f0f0f0;
       --logo-size: 9rem;
+      --pad: clamp(1.25rem, 4vw, 3.5rem);
       --display: "Archivo", "Arial Black", Arial, sans-serif;
       --body: "Newsreader", Georgia, "Times New Roman", serif;
       box-sizing: border-box;
       padding-top: env(safe-area-inset-top, 0px);
       padding-bottom: env(safe-area-inset-bottom, 0px);
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -48,6 +51,7 @@
     html {
       scroll-padding-top: env(safe-area-inset-top, 0px);
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     *,
@@ -63,6 +67,7 @@
       font-family: var(--body);
       font-size: 1.2rem;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a {
@@ -78,11 +83,14 @@
     .hero {
       background: #000;
       color: #fff;
+      min-height: 100vh;
       min-height: 100svh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: clamp(1.25rem, 4vw, 3.5rem);
+      padding: var(--pad);
+      padding-left: max(var(--pad), env(safe-area-inset-left, 0px));
+      padding-right: max(var(--pad), env(safe-area-inset-right, 0px));
     }
 
     .hero h1 {
@@ -92,7 +100,8 @@
       text-transform: uppercase;
       line-height: 0.88;
       letter-spacing: -0.03em;
-      font-size: clamp(3.4rem, 17vw, 17rem);
+      /* capped by viewport height too, so landscape phones don't overflow */
+      font-size: clamp(3rem, min(17vw, 27svh), 17rem);
       overflow-wrap: anywhere;
       animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
     }
@@ -133,9 +142,11 @@
       background: var(--c);
       color: var(--ink);
       display: grid;
-      grid-template-columns: minmax(7rem, 22%) 1fr;
+      grid-template-columns: minmax(7rem, 22%) minmax(0, 1fr);
       gap: clamp(1.5rem, 5vw, 5rem);
-      padding: clamp(7rem, 15vw, 12rem) max(clamp(1.25rem, 4vw, 3.5rem), calc((100% - 1400px) / 2)) clamp(3rem, 8vw, 6rem);
+      padding: clamp(7rem, 15vw, 12rem) max(var(--pad), calc((100% - 1400px) / 2)) clamp(3rem, 8vw, 6rem);
+      padding-left: max(var(--pad), calc((100% - 1400px) / 2), env(safe-area-inset-left, 0px));
+      padding-right: max(var(--pad), calc((100% - 1400px) / 2), env(safe-area-inset-right, 0px));
     }
 
     .wave {
@@ -162,6 +173,10 @@
       margin: 0;
     }
 
+    .what {
+      min-width: 0;
+    }
+
     .what h2 {
       display: flex;
       flex-wrap: wrap;
@@ -174,6 +189,7 @@
       letter-spacing: -0.02em;
       margin: 0 0 1.5rem;
       text-transform: uppercase;
+      overflow-wrap: anywhere;
     }
 
     .logo {
@@ -199,11 +215,13 @@
       overflow-x: auto;
       overscroll-behavior-inline: contain;
       scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
     }
 
     .screenshot-slot {
       flex: 0 0 auto;
       width: fit-content;
+      max-width: 100%;
       margin: 0;
       scroll-snap-align: start;
     }
@@ -214,6 +232,12 @@
       height: clamp(13rem, 30vw, 19rem);
       max-width: min(70vw, 32rem);
       object-fit: contain;
+    }
+
+    .fb-post,
+    .fb-post span,
+    .fb-post iframe {
+      max-width: 100%;
     }
 
     .what .team {
@@ -254,19 +278,69 @@
       position: relative;
       background: #000;
       color: #fff;
-      padding: clamp(5rem, 12vw, 9rem) clamp(1.25rem, 4vw, 3.5rem) clamp(2rem, 5vw, 3.5rem);
+      padding: clamp(5rem, 12vw, 9rem) var(--pad) clamp(2rem, 5vw, 3.5rem);
       font-family: var(--display);
       font-weight: 500;
     }
 
+    /* Tablets and phones: stack the year above the content */
     @media (max-width: 720px) {
       .work {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 1rem;
+        padding-top: clamp(5.5rem, 22vw, 7rem);
+        padding-bottom: 3rem;
       }
 
       body {
         font-size: 1.1rem;
+        line-height: 1.55;
+      }
+
+      :root {
+        --logo-size: 5.5rem;
+      }
+
+      .what h2 {
+        gap: 0.75rem;
+        margin-bottom: 1.1rem;
+      }
+
+      /* Let screenshots scroll edge to edge, like a native carousel */
+      .screenshots {
+        margin-left: calc(var(--pad) * -1);
+        margin-right: calc(var(--pad) * -1);
+        padding-left: var(--pad);
+        padding-right: var(--pad);
+        scroll-padding-left: var(--pad);
+        margin-top: 1.5rem;
+      }
+
+      .screenshot-slot img {
+        height: clamp(12rem, 58vw, 17rem);
+        max-width: 80vw;
+      }
+    }
+
+    /* Small phones */
+    @media (max-width: 400px) {
+      :root {
+        --logo-size: 4.5rem;
+      }
+
+      body {
+        font-size: 1.05rem;
+      }
+    }
+
+    /* Short landscape screens */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero {
+        min-height: 100svh;
+      }
+
+      .work {
+        padding-top: 5rem;
       }
     }
   </style>
@@ -290,7 +364,7 @@
       <div class="what">
         <h2 id="withyou">
           With You
-          <img class="logo" alt="" src="with_you\pw.png" loading="lazy" />
+          <img class="logo" alt="" src="with_you/pw.png" loading="lazy" />
         </h2>
         <p>
           With You is an app I built between 2022 and 2023 to support refugees
@@ -321,7 +395,7 @@
       <div class="what">
         <h2 id="robobekia">
           Robobekia
-          <img class="logo" alt="" src="robobekia/logos psd/ar/New Project.png" loading="lazy" />
+          <img class="logo" alt="" src="robobekia/logos%20psd/ar/New%20Project.png" loading="lazy" />
         </h2>
         <p>
           Robobekia is an e-commerce application with a unique business model.
@@ -352,7 +426,7 @@
         </p>
         <div class="screenshots" aria-label="Robobekia screenshots">
           <figure class="screenshot-slot">
-            <img src="robobekia/ads/ar/ad ar.png" alt="Robobekia advertisement showing the customer app"
+            <img src="robobekia/ads/ar/ad%20ar.png" alt="Robobekia advertisement showing the customer app"
               loading="lazy" />
           </figure>
         </div>
@@ -367,7 +441,7 @@
       <div class="what">
         <h2 id="egycar">
           Egycar
-          <img class="logo" alt="" src="egycar/logos new/logo green1.png" loading="lazy" />
+          <img class="logo" alt="" src="egycar/logos%20new/logo%20green1.png" loading="lazy" />
         </h2>
         <p>
           Egycar is a ride-hailing platform I built for the dense towns and
@@ -386,14 +460,14 @@
         </p>
         <div class="screenshots" aria-label="Egycar screenshots">
           <figure class="screenshot-slot">
-            <img src="egycar\screensots\egycar user\Screenshot_20250622_062816.jpg" alt="Egycar rider app screen"
+            <img src="egycar/screensots/egycar%20user/Screenshot_20250622_062816.jpg" alt="Egycar rider app screen"
               loading="lazy" />
           </figure>
           <figure class="screenshot-slot">
-            <img src="egycar\screensots\egycaradmin\2e.PNG" alt="Egycar admin dashboard, first view" loading="lazy" />
+            <img src="egycar/screensots/egycaradmin/2e.PNG" alt="Egycar admin dashboard, first view" loading="lazy" />
           </figure>
           <figure class="screenshot-slot">
-            <img src="egycar\screensots\egycaradmin\Screenshot (4).png" alt="Egycar admin dashboard, second view"
+            <img src="egycar/screensots/egycaradmin/Screenshot%20(4).png" alt="Egycar admin dashboard, second view"
               loading="lazy" />
           </figure>
         </div>
