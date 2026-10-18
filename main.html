@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description"
+    content="Portfolio of Yahia Shawky Sief: With You, Robobekia, NourishBox, Egycar and Alfa Scout Group." />
+  <title>Yahia Shawky Sief</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;800;900&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #000000;
+      --muted: #555555;
+      --rule: #000000;
+      --soft: #f0f0f0;
+      --logo-size: 9rem;
+      --display: "Archivo", "Arial Black", Arial, sans-serif;
+      --body: "Newsreader", Georgia, "Times New Roman", serif;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #000000;
+        --ink: #ffffff;
+        --muted: #a8a8a8;
+        --rule: #ffffff;
+        --soft: #161616;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #000000;
+      --ink: #ffffff;
+      --muted: #a8a8a8;
+      --rule: #ffffff;
+      --soft: #161616;
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px);
+      scroll-behavior: smooth;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid currentColor;
+      outline-offset: 3px;
+    }
+
+    /* Hero: always black with white text */
+    .hero {
+      background: #000;
+      color: #fff;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(1.25rem, 4vw, 3.5rem);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.88;
+      letter-spacing: -0.03em;
+      font-size: clamp(3.4rem, 17vw, 17rem);
+      overflow-wrap: anywhere;
+      animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+
+    .hero h1 span {
+      display: block;
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(8%);
+        opacity: 0;
+      }
+
+      to {
+        transform: none;
+        opacity: 1;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero h1 {
+        animation: none;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    /* Project sections */
+    main {
+      display: block;
+    }
+
+    .work {
+      position: relative;
+      background: var(--c);
+      color: var(--ink);
+      display: grid;
+      grid-template-columns: minmax(7rem, 22%) 1fr;
+      gap: clamp(1.5rem, 5vw, 5rem);
+      padding: clamp(7rem, 15vw, 12rem) max(clamp(1.25rem, 4vw, 3.5rem), calc((100% - 1400px) / 2)) clamp(3rem, 8vw, 6rem);
+    }
+
+    .wave {
+      position: absolute;
+      left: 0;
+      top: -1px;
+      width: 100%;
+      height: clamp(50px, 9vw, 120px);
+      display: block;
+      fill: var(--prev);
+      pointer-events: none;
+    }
+
+    .work:nth-of-type(even) .wave {
+      transform: scaleX(-1);
+    }
+
+    .when {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+
+    .what h2 {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .logo {
+      display: block;
+      flex: none;
+      width: var(--logo-size);
+      height: var(--logo-size);
+      object-fit: contain;
+    }
+
+    .what p {
+      max-width: 62ch;
+      margin: 0 0 1.1rem;
+    }
+
+    .screenshots {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-width: 0;
+      margin: 2rem 0 0;
+      padding: 0.25rem 0 0.75rem;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-snap-type: x mandatory;
+    }
+
+    .screenshot-slot {
+      flex: 0 0 auto;
+      width: fit-content;
+      margin: 0;
+      scroll-snap-align: start;
+    }
+
+    .screenshot-slot img {
+      display: block;
+      width: auto;
+      height: clamp(13rem, 30vw, 19rem);
+      max-width: min(70vw, 32rem);
+      object-fit: contain;
+    }
+
+    .what .team {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 1rem;
+      opacity: 0.75;
+      margin: 0 0 2rem;
+    }
+
+    .apps {
+      list-style: none;
+      margin: 1.2rem 0 1.4rem;
+      padding: 0;
+      max-width: 62ch;
+    }
+
+    .apps li {
+      padding: 0.4rem 0;
+    }
+
+    .apps strong {
+      font-family: var(--display);
+      font-weight: 800;
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 1.2rem;
+      max-width: 62ch;
+    }
+
+    .list li {
+      margin-bottom: 0.6rem;
+    }
+
+    footer {
+      position: relative;
+      background: #000;
+      color: #fff;
+      padding: clamp(5rem, 12vw, 9rem) clamp(1.25rem, 4vw, 3.5rem) clamp(2rem, 5vw, 3.5rem);
+      font-family: var(--display);
+      font-weight: 500;
+    }
+
+    @media (max-width: 720px) {
+      .work {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      body {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v21.0"></script>
+
+  <header class="hero">
+    <h1><span>Yahia</span><span>Shawky</span><span>Sief</span></h1>
+  </header>
+
+  <main>
+    <section class="work" aria-labelledby="withyou" style="--c: #02558b; --ink: #fff; --prev: #000">
+      <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0H1440V40C1200 120 960 0 720 50S240 110 0 40Z" />
+      </svg>
+      <p class="when">2022 – 2023</p>
+      <div class="what">
+        <h2 id="withyou">
+          With You
+          <img class="logo" alt="" src="with_you\pw.png" loading="lazy" />
+        </h2>
+        <p>
+          With You is an app I built between 2022 and 2023 to support refugees
+          in Egypt. Palestinians, Syrians, and Sudanese people living in Egypt
+          are officially treated as "guests" rather than refugees, which means
+          they receive no governmental support of any kind. With You was
+          designed to help fill that gap and give these communities some of
+          the support the system doesn't provide.
+        </p>
+        <p>
+          The project won the AFFIAT finals, confirming the problem was real
+          and our solution had value. Unfortunately, it never went into
+          production, but it taught me how much a good idea depends on
+          resources and support to reach the people who need it.
+        </p>
+        <!-- To add screenshots, insert:
+        <div class="screenshots" aria-label="With You screenshots">
+          <figure class="screenshot-slot"><img src="with_you/screenshot-1.png" alt="Describe the screen" loading="lazy"></figure>
+        </div> -->
+      </div>
+    </section>
+
+    <section class="work" aria-labelledby="robobekia" style="--c: #5e503f; --ink: #fff; --prev: #02558b">
+      <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0H1440V40C1200 120 960 0 720 50S240 110 0 40Z" />
+      </svg>
+      <p class="when">2022</p>
+      <div class="what">
+        <h2 id="robobekia">
+          Robobekia
+          <img class="logo" alt="" src="robobekia/logos psd/ar/New Project.png" loading="lazy" />
+        </h2>
+        <p>
+          Robobekia is an e-commerce application with a unique business model.
+          It lets users sell recyclable waste, which the system then collects
+          and recycles in an organized way.
+        </p>
+        <p>
+          The system serves all stakeholders through three connected
+          applications:
+        </p>
+        <ul class="apps">
+          <li>
+            <strong>Customer App:</strong> photograph and categorize waste,
+            then submit a sale request.
+          </li>
+          <li>
+            <strong>Driver App:</strong> guides drivers to collect waste from
+            customers' locations.
+          </li>
+          <li>
+            <strong>Admin Dashboard:</strong> track orders, manage users, and
+            monitor collection and pricing.
+          </li>
+        </ul>
+        <p>
+          The project brings e-commerce, environmental sustainability, and
+          smart technologies together in one experience.
+        </p>
+        <div class="screenshots" aria-label="Robobekia screenshots">
+          <figure class="screenshot-slot">
+            <img src="robobekia/ads/ar/ad ar.png" alt="Robobekia advertisement showing the customer app"
+              loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="work" aria-labelledby="egycar" style="--c: #fff; --ink: #000; --prev: #5e503f">
+      <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0H1440V40C1200 120 960 0 720 50S240 110 0 40Z" />
+      </svg>
+      <p class="when">2026</p>
+      <div class="what">
+        <h2 id="egycar">
+          Egycar
+          <img class="logo" alt="" src="egycar/logos new/logo green1.png" loading="lazy" />
+        </h2>
+        <p>
+          Egycar is a ride-hailing platform I built for the dense towns and
+          rural areas of Egypt that big apps ignore. About 62 million people
+          live outside Cairo, Alexandria, and the other major cities,
+          including my hometown, Dessouk, which has 400,000 residents and no
+          ride-hailing service.
+        </p>
+        <p>
+          Existing apps skip these places because their software and per-ride
+          costs don't work with fares of 20 to 60 US cents. Egycar was
+          designed around those prices from the start. Everything is built
+          locally, with no external APIs except online payments through a
+          local company, paid in Egyptian currency. That keeps costs low
+          enough to make small-town rides economically viable.
+        </p>
+        <div class="screenshots" aria-label="Egycar screenshots">
+          <figure class="screenshot-slot">
+            <img src="egycar\screensots\egycar user\Screenshot_20250622_062816.jpg" alt="Egycar rider app screen"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar\screensots\egycaradmin\2e.PNG" alt="Egycar admin dashboard, first view" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar\screensots\egycaradmin\Screenshot (4).png" alt="Egycar admin dashboard, second view"
+              loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alfa: light grey so the wave from the white Egycar section stays visible -->
+    <section class="work" aria-labelledby="alfa" style="--c: #f0f0f0; --ink: #000; --prev: #fff">
+      <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0H1440V40C1200 120 960 0 720 50S240 110 0 40Z" />
+      </svg>
+      <p class="when">2023 – 2026</p>
+      <div class="what">
+        <h2 id="alfa">
+          Alfa Scout Group
+          <img class="logo" alt="" src="facebook_1792353624818_7517675977990514533.jpg" loading="lazy" />
+        </h2>
+        <p class="team">Media team</p>
+        <ul class="list">
+          <li>Part of the media team.</li>
+          <li>
+            Created an automation tool that takes photos, vertical or
+            horizontal, in any ratio or size, improves their colors, and adds
+            a custom frame.
+          </li>
+        </ul>
+        <div class="screenshots" aria-label="Alfa Scout Group screenshots">
+          <figure class="screenshot-slot">
+            <img src="facebook_1792353591377_7517675837730731872.jpg" alt="Alfa Scout Group media team photo 1"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="facebook_1792353616341_7517675942436227383.jpg" alt="Alfa Scout Group media team photo 2"
+              loading="lazy" />
+          </figure>
+        </div>
+        <div class="screenshots" aria-label="Alfa Scout Group screenshots">
+          <figure class="screenshot-slot">
+            <div class="fb-post"
+              data-href="https://www.facebook.com/story.php?story_fbid=556703217378699&id=100091170758087"
+              data-width="340">
+              <blockquote cite="https://www.facebook.com/story.php?story_fbid=556703217378699&id=100091170758087"
+                class="fb-xfbml-parse-ignore">
+                <a href="https://www.facebook.com/story.php?story_fbid=556703217378699&id=100091170758087">View the post
+                  on Facebook</a>
+              </blockquote>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="--prev: #f0f0f0">
+    <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 0H1440V40C1200 120 960 0 720 50S240 110 0 40Z" />
+    </svg>
+  </footer>
+</body>
+
+</html>

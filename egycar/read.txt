@@ -1,0 +1,10 @@
+FONTS:
+BANK GOTHIC
+
+COLORS:
+Green dark: #446c44
+Green light: #acc46a
+Yellow dark: #fcc304
+Yellow light: #ffeb00
+Red dark: #a00405
+red light: #ff4a23
