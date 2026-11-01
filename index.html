@@ -4,50 +4,40 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Yahia Shawky Sief – Software developer with a design background</title>
   <meta name="description"
-    content="Portfolio of Yahia Shawky Sief: With You, Robobekia, NourishBox, Egycar and Alfa Scout Group." />
-  <title>Yahia Shawky Sief</title>
+    content="Yahia Shawky Sief is a software developer with a design background, building apps that solve everyday problems in Egypt." />
+  <!-- TODO: replace with your real domain and a 1200x630 preview image -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Yahia Shawky Sief – Software developer with a design background" />
+  <meta property="og:description"
+    content="Software developer with a design background. Projects include Egycar, Robobekia, With You and Alfa Scout Group." />
+  <meta property="og:image" content="https://YOUR-DOMAIN/preview.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000'/%3E%3Ctext x='50' y='72' font-size='64' font-family='Arial Black,Arial' font-weight='900' text-anchor='middle' fill='%23fff'%3EY%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;800;900&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;800;900&family=Newsreader:wght@400;500&display=swap"
     rel="stylesheet" />
   <style>
     :root {
-      --bg: #ffffff;
-      --ink: #000000;
-      --muted: #555555;
-      --rule: #000000;
-      --soft: #f0f0f0;
       --logo-size: 9rem;
+      --pad: clamp(1.25rem, 4vw, 3.5rem);
       --display: "Archivo", "Arial Black", Arial, sans-serif;
       --body: "Newsreader", Georgia, "Times New Roman", serif;
       box-sizing: border-box;
       padding-top: env(safe-area-inset-top, 0px);
       padding-bottom: env(safe-area-inset-bottom, 0px);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        --bg: #000000;
-        --ink: #ffffff;
-        --muted: #a8a8a8;
-        --rule: #ffffff;
-        --soft: #161616;
-      }
-    }
-
-    :root[data-theme="dark"] {
-      --bg: #000000;
-      --ink: #ffffff;
-      --muted: #a8a8a8;
-      --rule: #ffffff;
-      --soft: #161616;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
     html {
       scroll-padding-top: env(safe-area-inset-top, 0px);
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     *,
@@ -58,11 +48,12 @@
 
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--ink);
+      background: #fff;
+      color: #000;
       font-family: var(--body);
       font-size: 1.2rem;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a {
@@ -74,15 +65,19 @@
       outline-offset: 3px;
     }
 
-    /* Hero: always black with white text */
+    /* Hero */
     .hero {
       background: #000;
       color: #fff;
+      min-height: 100vh;
       min-height: 100svh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: clamp(1.25rem, 4vw, 3.5rem);
+      gap: clamp(1.25rem, 3vw, 2.5rem);
+      padding: var(--pad);
+      padding-left: max(var(--pad), env(safe-area-inset-left, 0px));
+      padding-right: max(var(--pad), env(safe-area-inset-right, 0px));
     }
 
     .hero h1 {
@@ -92,13 +87,21 @@
       text-transform: uppercase;
       line-height: 0.88;
       letter-spacing: -0.03em;
-      font-size: clamp(3.4rem, 17vw, 17rem);
+      font-size: clamp(3rem, min(17vw, 24svh), 17rem);
       overflow-wrap: anywhere;
       animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
     }
 
     .hero h1 span {
       display: block;
+    }
+
+    .tagline {
+      margin: 0;
+      max-width: 34ch;
+      font-size: clamp(1.25rem, 2.6vw, 2rem);
+      line-height: 1.35;
+      animation: rise 0.9s 0.15s cubic-bezier(0.2, 0.7, 0.2, 1) both;
     }
 
     @keyframes rise {
@@ -114,7 +117,9 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .hero h1 {
+
+      .hero h1,
+      .tagline {
         animation: none;
       }
 
@@ -124,18 +129,16 @@
     }
 
     /* Project sections */
-    main {
-      display: block;
-    }
-
     .work {
       position: relative;
       background: var(--c);
       color: var(--ink);
       display: grid;
-      grid-template-columns: minmax(7rem, 22%) 1fr;
+      grid-template-columns: minmax(7rem, 22%) minmax(0, 1fr);
       gap: clamp(1.5rem, 5vw, 5rem);
-      padding: clamp(7rem, 15vw, 12rem) max(clamp(1.25rem, 4vw, 3.5rem), calc((100% - 1400px) / 2)) clamp(3rem, 8vw, 6rem);
+      padding: clamp(7rem, 15vw, 12rem) max(var(--pad), calc((100% - 1400px) / 2)) clamp(3rem, 8vw, 6rem);
+      padding-left: max(var(--pad), calc((100% - 1400px) / 2), env(safe-area-inset-left, 0px));
+      padding-right: max(var(--pad), calc((100% - 1400px) / 2), env(safe-area-inset-right, 0px));
     }
 
     .wave {
@@ -162,6 +165,10 @@
       margin: 0;
     }
 
+    .what {
+      min-width: 0;
+    }
+
     .what h2 {
       display: flex;
       flex-wrap: wrap;
@@ -174,6 +181,7 @@
       letter-spacing: -0.02em;
       margin: 0 0 1.5rem;
       text-transform: uppercase;
+      overflow-wrap: anywhere;
     }
 
     .logo {
@@ -189,31 +197,65 @@
       margin: 0 0 1.1rem;
     }
 
-    .screenshots {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      min-width: 0;
-      margin: 2rem 0 0;
-      padding: 0.25rem 0 0.75rem;
-      overflow-x: auto;
-      overscroll-behavior-inline: contain;
-      scroll-snap-type: x mandatory;
+    /* Case-study facts: role, stack, links */
+    .facts {
+      display: grid;
+      grid-template-columns: max-content minmax(0, 1fr);
+      gap: 0.6rem 1.5rem;
+      align-items: baseline;
+      max-width: 62ch;
+      margin: 0 0 1.8rem;
+      padding: 1rem 0;
+      border-top: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 1.4;
     }
 
-    .screenshot-slot {
-      flex: 0 0 auto;
-      width: fit-content;
+    .facts dt {
+      font-weight: 800;
+    }
+
+    .facts dd {
       margin: 0;
-      scroll-snap-align: start;
     }
 
-    .screenshot-slot img {
-      display: block;
-      width: auto;
-      height: clamp(13rem, 30vw, 19rem);
-      max-width: min(70vw, 32rem);
-      object-fit: contain;
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tags li {
+      border: 1.5px solid currentColor;
+      border-radius: 999px;
+      padding: 0.1rem 0.7rem;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .links a {
+      font-weight: 800;
+      text-underline-offset: 0.2em;
+    }
+
+    .what h3 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin: 2rem 0 0.6rem;
     }
 
     .what .team {
@@ -250,39 +292,462 @@
       margin-bottom: 0.6rem;
     }
 
+    /* Stats */
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem clamp(2rem, 6vw, 5rem);
+      margin: 2rem 0 0;
+    }
+
+    .stat {
+      margin: 0;
+    }
+
+    .stat dt {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+
+    .stat dd {
+      margin: 0.3rem 0 0;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+
+    /* Screenshots */
+    .screenshots {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-width: 0;
+      margin: 2rem 0 0;
+      padding: 0.25rem 0 0.75rem;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .screenshot-slot {
+      flex: 0 0 auto;
+      width: fit-content;
+      max-width: 100%;
+      margin: 0;
+      scroll-snap-align: start;
+    }
+
+    .screenshot-slot img {
+      display: block;
+      width: auto;
+      height: clamp(13rem, 30vw, 19rem);
+      max-width: min(70vw, 32rem);
+      object-fit: contain;
+    }
+
+    .post-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.6rem 1.2rem;
+      border: 2px solid currentColor;
+      border-radius: 999px;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+    }
+
+    .post-link:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    /* Footer / contact */
     footer {
       position: relative;
       background: #000;
       color: #fff;
-      padding: clamp(5rem, 12vw, 9rem) clamp(1.25rem, 4vw, 3.5rem) clamp(2rem, 5vw, 3.5rem);
+      padding: clamp(7rem, 15vw, 12rem) var(--pad) clamp(2rem, 5vw, 3.5rem);
+      padding-left: max(var(--pad), env(safe-area-inset-left, 0px));
+      padding-right: max(var(--pad), env(safe-area-inset-right, 0px));
       font-family: var(--display);
       font-weight: 500;
     }
 
+    .contact {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .contact h2 {
+      margin: 0 0 1rem;
+      font-weight: 900;
+      font-size: clamp(3rem, 12vw, 10rem);
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .contact p {
+      margin: 0 0 1.5rem;
+      max-width: 40ch;
+      font-family: var(--body);
+      font-size: 1.3rem;
+    }
+
+    .email {
+      display: inline-block;
+      font-weight: 800;
+      font-size: clamp(1.4rem, 4.5vw, 3rem);
+      letter-spacing: -0.02em;
+      overflow-wrap: anywhere;
+      text-underline-offset: 0.15em;
+      text-decoration-thickness: 3px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 2rem;
+      list-style: none;
+      margin: 2rem 0 0;
+      padding: 0;
+      font-size: 1.1rem;
+    }
+
+    .contact-links a {
+      font-weight: 800;
+      text-underline-offset: 0.2em;
+    }
+
+    .copy {
+      margin: clamp(3rem, 8vw, 6rem) auto 0;
+      max-width: 1400px;
+      padding-top: 1rem;
+      border-top: 1px solid #555;
+      font-size: 0.9rem;
+      color: #a8a8a8;
+    }
+
+    /* Tablets and phones */
     @media (max-width: 720px) {
       .work {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 1rem;
+        padding-top: clamp(5.5rem, 22vw, 7rem);
+        padding-bottom: 3rem;
       }
 
       body {
         font-size: 1.1rem;
+        line-height: 1.55;
+      }
+
+      :root {
+        --logo-size: 5.5rem;
+      }
+
+      .what h2 {
+        gap: 0.75rem;
+        margin-bottom: 1.1rem;
+      }
+
+      .facts {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.2rem;
+      }
+
+      .facts dd {
+        margin-bottom: 0.7rem;
+      }
+
+      .screenshots {
+        margin-left: calc(var(--pad) * -1);
+        margin-right: calc(var(--pad) * -1);
+        padding-left: var(--pad);
+        padding-right: var(--pad);
+        scroll-padding-left: var(--pad);
+        margin-top: 1.5rem;
+      }
+
+      .screenshot-slot img {
+        height: clamp(12rem, 58vw, 17rem);
+        max-width: 80vw;
+      }
+    }
+
+    @media (max-width: 400px) {
+      :root {
+        --logo-size: 4.5rem;
+      }
+
+      body {
+        font-size: 1.05rem;
+      }
+    }
+
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero {
+        min-height: 100svh;
+      }
+
+      .work {
+        padding-top: 5rem;
       }
     }
   </style>
 </head>
 
 <body>
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous"
-    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v21.0"></script>
-
   <header class="hero">
     <h1><span>Yahia</span><span>Shawky</span><span>Sief</span></h1>
+    <!-- Edit this line so it matches what you actually do -->
+    <p class="tagline">Software developer with a design background, building apps that solve everyday problems.</p>
   </header>
 
   <main>
-    <section class="work" aria-labelledby="withyou" style="--c: #02558b; --ink: #fff; --prev: #000">
+    <!-- Newest first. Each section's --prev must match the colour of the section above it. -->
+
+    <!-- EGYCAR -->
+    <section class="work" aria-labelledby="egycar" style="--c: #fff; --ink: #000; --prev: #000">
+      <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0H1440V40C1200 120 960 0 720 50S240 110 0 40Z" />
+      </svg>
+      <p class="when">2025 – 2026</p>
+      <div class="what">
+        <h2 id="egycar">
+          Egycar
+          <img class="logo" alt="" src="egycar/logos new/logo green1.png" loading="lazy" />
+        </h2>
+        <dl class="facts">
+          <dt>Role</dt>
+          <dd>Built the rider app, driver app and admin dashboard.</dd>
+          <dt>Status</dt>
+          <dd>Not launched</dd>
+          <dt>Stack</dt>
+          <dd>
+            <ul class="tags">
+              <li>Flutter</li>
+              <li>Dart</li>
+              <li>Firebase</li>
+            </ul>
+          </dd>
+        </dl>
+        <p>
+          Egycar is a ride-hailing platform I built for the dense towns and
+          rural areas of Egypt that big apps overlook. About 93 million people
+          live outside the Cairo and Alexandria governorates
+          (<a href="https://www.capmas.gov.eg/publications/150" target="_blank" rel="noopener">CAPMAS, first quarter
+            2026</a>),
+          including my hometown, Dessouk, which has 400,000 residents and no
+          ride-hailing service.
+        </p>
+        <p>
+          Existing apps skip these places because their software and per-ride
+          costs don't work with fares of 20 to 60 US cents. Egycar was
+          designed around those prices from the start. Everything is built
+          locally, with no external APIs except online payments through a
+          local company, paid in Egyptian currency. That keeps costs low
+          enough to make small-town rides economically viable.
+        </p>
+        <div class="screenshots" aria-label="Egycar screenshots">
+          <figure class="screenshot-slot">
+            <img src="egycar/logos new/icon green png.png" alt="Egycar rider app screen" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/logos new/logo green1.png" alt="Egycar admin dashboard, first view" loading="lazy" />
+          </figure>
+        </div>
+        <div class="screenshots" aria-label="Egycar screenshots">
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20240924_100221.jpg" alt="Egycar rider app screen" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20240924_100234.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20240924_100241.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20250516_040550.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20250516_040553.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20250516_040557.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20250516_040608.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20250516_040621.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20250516_040628.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20250516_040637.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20250622_062751.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20250622_062754.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20250622_062816.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20250622_062918.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20250622_062946.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar user/Screenshot_20250622_063043.jpg" alt="Egycar admin dashboard, first view"
+              loading="lazy" />
+          </figure>
+        </div>
+        <div class="screenshots" aria-label="Egycar screenshots">
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar driver/Screenshot_20250622_062957.jpg" alt="Egycar rider app screen"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar driver/Screenshot_20250622_063009.jpg" alt="Egycar rider app screen"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar driver/Screenshot_20250622_063026.jpg" alt="Egycar rider app screen"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar driver/Screenshot_20250622_063033.jpg" alt="Egycar rider app screen"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar driver/Screenshot_20250622_063039.jpg" alt="Egycar rider app screen"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycar driver/Screenshot_20250622_063043.jpg" alt="Egycar rider app screen"
+              loading="lazy" />
+          </figure>
+        </div>
+        <div class="screenshots" aria-label="Egycar screenshots">
+          <figure class="screenshot-slot">
+            <img src="egycar/egycaradmin/1re.PNG" alt="Egycar rider app screen" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycaradmin/2e.PNG" alt="Egycar rider app screen" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycaradmin/Caadspture.PNG" alt="Egycar rider app screen" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycaradmin/Captadure.PNG" alt="Egycar rider app screen" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycaradmin/Capture (2).PNG" alt="Egycar rider app screen" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycaradmin/Capture.PNG" alt="Egycar rider app screen" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycaradmin/Screenshot (4).png" alt="Egycar rider app screen" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycaradmin/Screenshot (6).png" alt="Egycar rider app screen" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycaradmin/Screenshot (7).png" alt="Egycar rider app screen" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="egycar/egycaradmin/Screenshot (8).png" alt="Egycar rider app screen" loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALFA SCOUT GROUP -->
+    <section class="work" aria-labelledby="alfa" style="--c: #f0f0f0; --ink: #000; --prev: #fff">
+      <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0H1440V40C1200 120 960 0 720 50S240 110 0 40Z" />
+      </svg>
+      <p class="when">2023 – 2026</p>
+      <div class="what">
+        <h2 id="alfa">
+          Alfa Scout Group
+          <img class="logo" alt="" src="alfa/logo.jpg" loading="lazy" />
+        </h2>
+        <dl class="facts">
+          <dt>Role</dt>
+          <dd>Media team member. Event photographer, poster and photo frame designer (Photoshop), and creator of the
+            photo automation tool.</dd>
+          <dt>Stack</dt>
+          <dd>
+            <ul class="tags">
+              <li>Photoshop</li>
+              <li>Python</li>
+            </ul>
+          </dd>
+        </dl>
+        <p>
+          As part of the group's media team, I was the main photographer at most
+          of our events, shooting and editing most of the 4,500+ photos. I also
+          designed posters in Photoshop, along with the frames used for event
+          photos. To speed up the editing, I built an automation tool that takes
+          photos, vertical or horizontal, in any ratio or size, improves their
+          colors, and adds those custom frames. It removed hours of manual
+          editing after every event.
+        </p>
+        <dl class="stats">
+          <div class="stat">
+            <dt>150+</dt>
+            <dd>events covered</dd>
+          </div>
+          <div class="stat">
+            <dt>4,500+</dt>
+            <dd>photos, most shot and edited by me</dd>
+          </div>
+        </dl>
+        <div class="screenshots" aria-label="Alfa Scout Group screenshots">
+          <figure class="screenshot-slot">
+            <img src="alfa/facebook_1792353591377_7517675837730731872.jpg" alt="Alfa Scout Group media team photo 1"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="alfa/facebook_1792353616341_7517675942436227383.jpg" alt="Alfa Scout Group media team photo 2"
+              loading="lazy" />
+          </figure>
+        </div>
+        <!-- Replaces the Facebook SDK embed. Faster, and works with ad blockers. -->
+        <a class="post-link" href="https://www.facebook.com/story.php?story_fbid=556703217378699&id=100091170758087"
+          target="_blank" rel="noopener">See the post on Facebook</a>
+      </div>
+    </section>
+
+    <!-- WITH YOU -->
+    <section class="work" aria-labelledby="withyou" style="--c: #02558b; --ink: #fff; --prev: #f0f0f0">
       <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0 0H1440V40C1200 120 960 0 720 50S240 110 0 40Z" />
       </svg>
@@ -290,8 +755,27 @@
       <div class="what">
         <h2 id="withyou">
           With You
-          <img class="logo" alt="" src="with_you\pw.png" loading="lazy" />
+          <img class="logo" alt="" src="with_you/pw.png" loading="lazy" />
         </h2>
+        <dl class="facts">
+          <dt>Role</dt>
+          <dd>Built the mobile apps and backend infrastructure.</dd>
+          <dt>Status</dt>
+          <dd>Not launched</dd>
+          <dt>Stack</dt>
+          <dd>
+            <ul class="tags">
+              <li>Flutter</li>
+              <li>Dart</li>
+            </ul>
+          </dd>
+          <dt>Result</dt>
+          <dd>Won the AFFIAT finals - Dubai - 2023. Affro-Asian Forum for Innovation and Technology is a non-profit organization
+            and conference series established to promote transparency, diversity, and open-source technology. It brings
+            together students, researchers, and entrepreneurs from Africa and Asia to foster innovation, with goals
+            including the establishment of incubators for startup teams and the organization of semiannual conferences
+            and workshops</dd>
+        </dl>
         <p>
           With You is an app I built between 2022 and 2023 to support refugees
           in Egypt. Palestinians, Syrians, and Sudanese people living in Egypt
@@ -306,13 +790,14 @@
           production, but it taught me how much a good idea depends on
           resources and support to reach the people who need it.
         </p>
-        <!-- To add screenshots, insert:
+        <!-- todo: add screenshots or mockups:
         <div class="screenshots" aria-label="With You screenshots">
-          <figure class="screenshot-slot"><img src="with_you/screenshot-1.png" alt="Describe the screen" loading="lazy"></figure>
+          <figure class="screenshot-slot"><img src="with_you/screen-1.png" alt="Describe the screen" loading="lazy"></figure>
         </div> -->
       </div>
     </section>
 
+    <!-- ROBOBEKIA -->
     <section class="work" aria-labelledby="robobekia" style="--c: #5e503f; --ink: #fff; --prev: #02558b">
       <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0 0H1440V40C1200 120 960 0 720 50S240 110 0 40Z" />
@@ -321,17 +806,28 @@
       <div class="what">
         <h2 id="robobekia">
           Robobekia
-          <img class="logo" alt="" src="robobekia/logos psd/ar/New Project.png" loading="lazy" />
+          <img class="logo" alt="" src="robobekia/New Project (1).png" loading="lazy" />
         </h2>
+        <dl class="facts">
+          <dt>Role</dt>
+          <dd>Built the customer app, driver app and admin dashboard.</dd>
+          <dt>Status</dt>
+          <dd>Not launched</dd>
+          <dt>Stack</dt>
+          <dd>
+            <ul class="tags">
+              <li>Flutter</li>
+              <li>Dart</li>
+              <li>Firebase</li>
+            </ul>
+          </dd>
+        </dl>
         <p>
           Robobekia is an e-commerce application with a unique business model.
           It lets users sell recyclable waste, which the system then collects
           and recycles in an organized way.
         </p>
-        <p>
-          The system serves all stakeholders through three connected
-          applications:
-        </p>
+        <p>The system serves all stakeholders through three connected applications:</p>
         <ul class="apps">
           <li>
             <strong>Customer App:</strong> photograph and categorize waste,
@@ -352,105 +848,112 @@
         </p>
         <div class="screenshots" aria-label="Robobekia screenshots">
           <figure class="screenshot-slot">
-            <img src="robobekia/ads/ar/ad ar.png" alt="Robobekia advertisement showing the customer app"
+            <img src="robobekia/ad ar.png" alt="Robobekia advertisement showing the customer app" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/ezgif.com-video-to-gif.gif" alt="Robobekia advertisement showing the customer app"
               loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/ropipkia white board.png" alt="Robobekia advertisement showing the customer app"
+              loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/board.png" alt="Robobekia advertisement showing the customer app" loading="lazy" />
           </figure>
         </div>
-      </div>
-    </section>
-
-    <section class="work" aria-labelledby="egycar" style="--c: #fff; --ink: #000; --prev: #5e503f">
-      <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 0H1440V40C1200 120 960 0 720 50S240 110 0 40Z" />
-      </svg>
-      <p class="when">2026</p>
-      <div class="what">
-        <h2 id="egycar">
-          Egycar
-          <img class="logo" alt="" src="egycar/logos new/logo green1.png" loading="lazy" />
-        </h2>
-        <p>
-          Egycar is a ride-hailing platform I built for the dense towns and
-          rural areas of Egypt that big apps ignore. About 62 million people
-          live outside Cairo, Alexandria, and the other major cities,
-          including my hometown, Dessouk, which has 400,000 residents and no
-          ride-hailing service.
-        </p>
-        <p>
-          Existing apps skip these places because their software and per-ride
-          costs don't work with fares of 20 to 60 US cents. Egycar was
-          designed around those prices from the start. Everything is built
-          locally, with no external APIs except online payments through a
-          local company, paid in Egyptian currency. That keeps costs low
-          enough to make small-town rides economically viable.
-        </p>
-        <div class="screenshots" aria-label="Egycar screenshots">
+        <div class="screenshots" aria-label="Robobekia screenshots">
           <figure class="screenshot-slot">
-            <img src="egycar\screensots\egycar user\Screenshot_20250622_062816.jpg" alt="Egycar rider app screen"
-              loading="lazy" />
+            <img src="robobekia/robobekia user/Screenshot_20250622_063234.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
           </figure>
           <figure class="screenshot-slot">
-            <img src="egycar\screensots\egycaradmin\2e.PNG" alt="Egycar admin dashboard, first view" loading="lazy" />
+            <img src="robobekia/robobekia user/Screenshot_20250622_063239.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
           </figure>
           <figure class="screenshot-slot">
-            <img src="egycar\screensots\egycaradmin\Screenshot (4).png" alt="Egycar admin dashboard, second view"
-              loading="lazy" />
+            <img src="robobekia/robobekia user/Screenshot_20250622_063246.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/robobekia user/Screenshot_20250622_063249.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/robobekia user/Screenshot_20250622_063254.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/robobekia user/Screenshot_20250622_063305.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/robobekia user/Screenshot_20250622_063313.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/robobekia user/Screenshot_20250622_063341.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/robobekia user/Screenshot_20250622_063400.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
           </figure>
         </div>
-      </div>
-    </section>
-
-    <!-- Alfa: light grey so the wave from the white Egycar section stays visible -->
-    <section class="work" aria-labelledby="alfa" style="--c: #f0f0f0; --ink: #000; --prev: #fff">
-      <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 0H1440V40C1200 120 960 0 720 50S240 110 0 40Z" />
-      </svg>
-      <p class="when">2023 – 2026</p>
-      <div class="what">
-        <h2 id="alfa">
-          Alfa Scout Group
-          <img class="logo" alt="" src="facebook_1792353624818_7517675977990514533.jpg" loading="lazy" />
-        </h2>
-        <p class="team">Media team</p>
-        <ul class="list">
-          <li>Part of the media team.</li>
-          <li>
-            Created an automation tool that takes photos, vertical or
-            horizontal, in any ratio or size, improves their colors, and adds
-            a custom frame.
-          </li>
-        </ul>
-        <div class="screenshots" aria-label="Alfa Scout Group screenshots">
+        <div class="screenshots" aria-label="Robobekia screenshots">
           <figure class="screenshot-slot">
-            <img src="facebook_1792353591377_7517675837730731872.jpg" alt="Alfa Scout Group media team photo 1"
-              loading="lazy" />
-          </figure>
-          <figure class="screenshot-slot">
-            <img src="facebook_1792353616341_7517675942436227383.jpg" alt="Alfa Scout Group media team photo 2"
-              loading="lazy" />
+            <img src="robobekia/robobekia driver/Screenshot_20250622_063349.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
           </figure>
         </div>
-        <div class="screenshots" aria-label="Alfa Scout Group screenshots">
+        <div class="screenshots" aria-label="Robobekia screenshots">
           <figure class="screenshot-slot">
-            <div class="fb-post"
-              data-href="https://www.facebook.com/story.php?story_fbid=556703217378699&id=100091170758087"
-              data-width="340">
-              <blockquote cite="https://www.facebook.com/story.php?story_fbid=556703217378699&id=100091170758087"
-                class="fb-xfbml-parse-ignore">
-                <a href="https://www.facebook.com/story.php?story_fbid=556703217378699&id=100091170758087">View the post
-                  on Facebook</a>
-              </blockquote>
-            </div>
+            <img src="robobekia/robobekia admin/Screenshot_20250622_063424.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/robobekia admin/Screenshot_20250622_063434.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/robobekia admin/Screenshot_20250622_063440.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/robobekia admin/Screenshot_20250622_063446.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/robobekia admin/Screenshot_20250622_063450.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/robobekia admin/Screenshot_20250622_063506.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
+          </figure>
+          <figure class="screenshot-slot">
+            <img src="robobekia/robobekia admin/Screenshot_20250622_063612.jpg"
+              alt="Robobekia advertisement showing the customer app" loading="lazy" />
           </figure>
         </div>
       </div>
     </section>
   </main>
 
-  <footer style="--prev: #f0f0f0">
+  <footer id="contact" style="--prev: #5e503f">
     <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0 0H1440V40C1200 120 960 0 720 50S240 110 0 40Z" />
     </svg>
+    <div class="contact">
+      <h2>Let's talk</h2>
+      <p>Have a project, an idea, or a role in mind? Send me a message.</p>
+      <a class="email" href="mailto:yahia.shawky.sief@gmail.com">yahia.shawky.sief@gmail.com</a>
+      <ul class="contact-links">
+        <li><a href="https://github.com/Yahia-Shwky-Sief">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/yahia-sief-b13223218/">LinkedIn</a></li>
+      </ul>
+    </div>
+    <p class="copy">&copy; 2026 Yahia Shawky Sief</p>
   </footer>
 </body>
 
